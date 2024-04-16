@@ -1,0 +1,55 @@
+#!/bin/python3.7
+import os
+#*-----------------------------------------------------------------
+#* Taller
+#* IS2_taller_cuit.py
+#*-----------------------------------------------------------------
+
+#*------ Define la clase
+
+class Singleton():
+
+#*------ Esta es la inicialización ocurre con cada nueva instancia
+
+	def __init__(self):
+		pass
+	__instancia=None
+	cuit="30-13322447-6"
+
+#*------ Este es el método invocado para crear el objeto. 
+#*------ si ya existe reusa el existente, la primera vez que se llama __instancia es None
+#*------ y por lo tanto llama a __init__(self) 
+
+	@classmethod
+	def crearInstancia(cls):
+		if not cls.__instancia:
+			cls.__instancia=Singleton()
+		return cls.__instancia
+
+#*------ las referencias al valor retornan la versión privada del valor
+
+#	def __str__(self):
+#		return self.cuit
+
+#*---- Este es el punto implícito de comienzo de ejecución
+
+os.system('clear')
+print("Creo la primer instancia, llamada instancia1")
+
+instancia1=Singleton.crearInstancia()
+print("Luego de creado en el atributo interno cuit el valor es (%s)" % (instancia1.cuit))
+
+print("Creo una segunda instancia, con una nueva invocación a la clase")
+instancia2=Singleton.crearInstancia()
+
+print("Luego de creado en el atributo interno cuit el valor es (%s)" % (instancia2.cuit))
+
+print("Los objetos son diferentes, pero sus referencias son")
+
+print("Instancia1: cuit(%s)" % (instancia1))
+print("Instancia2: cuit(%s)" % (instancia2))
+print("Instancia1(cuit) %s" % (instancia1.cuit))
+print("Instancia2(cuit) %s" % (instancia2.cuit))
+
+print("Es decir se llama dos veces al constructor de la clase pero se genera solo una vez")
+
